@@ -1,4 +1,5 @@
 import axios from "axios";
+import RandomUsers from "./RandomUsers";
 
 export default {
   getUsers: function() {
@@ -20,7 +21,22 @@ export default {
               });
               resolve(results);
             })
-            .catch(err => reject(err));
+            .catch(err => {
+              console.log(err);
+              const randUsers = RandomUsers.results;
+              const randResults = randUsers.map(user => {
+                return {
+                firstName: user.name.first,
+                lastName: user.name.last,
+                image: user.picture.large,
+                phoneNumber: user.phone,
+                dob: user.dob.date,
+                email: user.email,
+                id: user.login.uuid
+                };
+              });
+              resolve(randResults);
+            });
       });
   }
 } 
