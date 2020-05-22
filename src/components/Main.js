@@ -27,12 +27,13 @@ function Main () {
             setSearchedUsers([]);
         } else {
         const results = users.filter(user => 
-            user.firstName.includes(search) || user.lastName.includes(search)
+            user.firstName.toLowerCase().startsWith(search.toLowerCase()) || user.lastName.toLowerCase().startsWith(search.toLowerCase())
         )
         setSearchedUsers(results);
     }}
 
     const handleInputChange = e => {
+        e.preventDefault();
         setSearch(e.currentTarget.value);
         searchUsers();
     };

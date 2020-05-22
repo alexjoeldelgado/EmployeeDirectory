@@ -2,7 +2,7 @@ import React from "react";
 
 function SearchInput(props) {
    return (
-    <form>
+    <form style={{width: "20%", marginLeft: "35%"}}>
         <input
         value={props.results}
         onChange={props.handleInputChange}
