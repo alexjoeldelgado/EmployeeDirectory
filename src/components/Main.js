@@ -3,11 +3,13 @@ import API from "../utils/API";
 import UserContext from "../utils/UserContext";
 import EmployeeList from "./EmployeeList";
 import SearchInput from "./SearchInput";
+import Buttons from "./Buttons";
 
 function Main () {
     const [users, setUsers] = useState([]);
     const [searchedUsers, setSearchedUsers] = useState([]);
     const [search, setSearch] = useState("");
+    const [sorted, setSorted] = useState(false);
 
     useEffect(() => {
         loadUsers();
@@ -22,32 +24,60 @@ function Main () {
         .catch(err => console.log(err));
     };
 
-    const searchUsers = () => {
+    const handleInputChange = e => {
+        setSearch(e.target.value);
         if (!search) {
             setSearchedUsers([]);
         } else {
-        const results = users.filter(user => 
-            user.firstName.toLowerCase().startsWith(search.toLowerCase()) || user.lastName.toLowerCase().startsWith(search.toLowerCase())
-        )
+            const results = users.filter(user => {
+                const fullName = user.firstName + " " + user.lastName;
+                return fullName.toLowerCase().indexOf(search.toLowerCase()) > -1;
+            });
         setSearchedUsers(results);
-    }}
-
-    const handleInputChange = e => {
-        e.preventDefault();
-        setSearch(e.currentTarget.value);
-        searchUsers();
+        }
     };
-    const handleFormSubmit = e => {
-        e.preventDefault();
+    
+    const sortByFirstName = () => {
+        if (!sorted) {
+            setUsers(users.sort((a, b) => (a.firstName > b.firstName) ? 1 : -1))
+            setSorted(!sorted);
+        } else {
+            setUsers(users.sort((a, b) => (a.firstName > b.firstName) ? -1 : 1))
+            setSorted(false);
+        }
+    }
+    const sortByLastName = () => {
+        if (!sorted) {
+            setUsers(users.sort((a, b) => (a.lastName > b.lastName) ? 1 : -1));
+            setSorted(!sorted);
+        } else {
+            setUsers(users.sort((a, b) => (a.lastName > b.lastName) ? -1 : 1));
+            setSorted(false)
+        }
+    }
+    const sortByDOB = () => {
+        if (!sorted) {
+           setUsers(users.sort((a, b) => (a.dob > b.dob) ? 1 : -1));
+           setSorted(!sorted); 
+        } else {
+            setUsers(users.sort((a, b) => (a.dob > b.dob) ? -1 : 1));
+            setSorted(false)
+        }      
     }
 
     return (
-      <UserContext.Provider value={{ users, searchedUsers, search }}>
-        <SearchInput
-            handleFormSubmit={handleFormSubmit}
-            handleInputChange={handleInputChange}
-            results={search}
-        />
+      <UserContext.Provider value={{ users, search, searchedUsers }}>
+        <div className="center">
+            <SearchInput
+                handleInputChange={handleInputChange}
+                results={search}
+            />
+            <Buttons 
+                sortFirst={sortByFirstName}
+                sortLast={sortByLastName}
+                sortDob={sortByDOB}
+            />
+        </div>
         <div className="main">
             <EmployeeList />
         </div>

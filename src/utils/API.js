@@ -5,7 +5,7 @@ export default {
   getUsers: function() {
     return new Promise((resolve,reject) => {
           axios
-            .get("https://randomuser.me/api/?results=10&nat=us")
+            .get("https://randomuser.me/api/?results=50&nat=us")
             .then(res => {
               const users = res.data.results;
               const results = users.map(user => {

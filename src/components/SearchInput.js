@@ -2,15 +2,16 @@ import React from "react";
 
 function SearchInput(props) {
    return (
-    <form style={{width: "20%", marginLeft: "35%"}}>
+    <div>
         <input
-        value={props.results}
-        onChange={props.handleInputChange}
-        onSubmit={props.handleFormSubmit}
-        placeholder="Type a First or Last Name"
-        id="name"
+            style={{width: "30%"}}
+            className="center"
+            value={props.results}
+            onChange={props.handleInputChange}
+            placeholder="Type a First or Last Name"
+            id="name"
         />
-    </form>
+    </div>
    ) 
 }
 

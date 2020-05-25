@@ -1,11 +1,13 @@
 import React from "react";
 
-function Buttons() {
+function Buttons(props) {
     return (
-        <div className="buttons">
-            <button>First Name</button>
-            <button>Last Name</button>
-            <button>Date of Birth</button>
+        <div className="button center">
+            <button className="btn" onClick={props.sortFirst}>First Name</button>
+            &nbsp;
+            <button className="btn" onClick={props.sortLast}>Last Name</button>
+            &nbsp;
+            <button className="btn" onClick={props.sortDob}>Date of Birth</button>
         </div>
     )
 }
