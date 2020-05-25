@@ -23,7 +23,7 @@ The user will need run npm i to run the application locally. The application is 
 
 Demo
 <br>
-<img src='./public/assets/images/demo.PNG' alt='demo' height='200px'>
+<img src='./public/assets/images/demo.gif' alt='demo' height='200px'>
 
 IMAGES
 <br>
