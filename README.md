@@ -17,7 +17,9 @@ IX. Test(s)
 X. Questions
     
 ## Installation
-The user will need run npm i to run the application locally. The application is creted within React framework and utilizez axios.
+The user will need to run "npm i" on their terminal in the appropriate folder to install any dependencies. Upon completion of installation, the user will need to run "npm start" to start the server. The application was created within the React framework and utilized the axios node package module to communicate with the back end.
+
+While visiting the website, the user will only need to search for the name of an employee by typing in the input form. The user can also sort the employees by clicking on one of the buttons shown.
 
 ## Visuals
 
